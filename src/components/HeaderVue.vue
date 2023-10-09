@@ -77,11 +77,11 @@
           <button @click="store.changeDark()"><font-awesome-icon icon="moon" class="ml-4" /></button>
         </div>
 
-        <div class="ml-6 flex h-10 w-full gap-4">
-          <button class="border p-2 rounded-lg border-blue-500 text-blue-500 hover:shadow-lg dark:text-white dark:border-white">
+        <div class="ml-6 md:flex md:flex-row md:h-10 w-full gap-4">
+          <button class="md:border w-32 md:p-2 md:rounded-lg md:border-blue-500 text-blue-500 hover:shadow-lg dark:text-white dark:border-white">
             Iniciar Sesion
           </button>
-          <button class="border p-2 rounded-lg border-green-500 text-green-500 hover:shadow-lg dark:bg-white dark:text-black font-medium dark:border-white">
+          <button class="md:border w-28 md:p-2 md:rounded-lg md:border-green-500 text-green-500 hover:shadow-lg dark:bg-white dark:text-black font-medium dark:border-white">
             Registrarse
           </button>
         </div>

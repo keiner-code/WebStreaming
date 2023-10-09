@@ -1,5 +1,5 @@
 <template>
-  <div class="m-4 w-64 border dark:border-gray-600 dark:shadow-lg rounded-lg shadow-xl float-left" :class="state.dark">
+  <div class="transform duration-500 ease-in-out hover:scale-105 m-4 w-64 border dark:border-gray-600 dark:shadow-lg rounded-lg shadow-xl float-left" :class="state.dark">
     <div class="relative dark:bg-gray-700 dark:text-white">
       <img
       class="rounded-t-xl"

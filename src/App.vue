@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import HeaderVue from './components/HeaderVue.vue';
+import HeaderVue from './components/HeaderVue.vue'
+import FooterVue from './components/FooterVue.vue'
 </script>
 
 <template>
-  <HeaderVue />
-  
+  <div class="fixed w-full z-10">
+    <HeaderVue />
+  </div>
   <RouterView />
+  <FooterVue />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
