@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useStreamingStore = defineStore('streaming', {
   state: () => ({
-    dark: ''
+    dark: '',
+    showdetails: false 
   }),
   getters: {
     
@@ -10,6 +11,9 @@ export const useStreamingStore = defineStore('streaming', {
   actions: {
     changeDark(){
       this.dark == '' ? (this.dark = 'dark') : (this.dark = '')
+    },
+    changeShowDetail(){
+      this.showdetails = !this.showdetails;
     }
   }
 })

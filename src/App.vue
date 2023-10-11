@@ -5,7 +5,7 @@ import FooterVue from './components/FooterVue.vue'
 </script>
 
 <template>
-  <div class="fixed w-full z-10">
+    <div class="fixed w-full z-10">
     <HeaderVue />
   </div>
   <RouterView />

@@ -4,8 +4,8 @@
     <div class="w-full md:w-1/2 flex flex-col justify-center items-center dark:bg-gray-700 dark:text-white">
       <h1 class="text-center text-3xl md:text-5xl mb-4 font-mediumtransition-all ease" :class="opacity">{{ data.title }}</h1>
       <p class="text-start w-full md:w-4/5 text-[1.1rem] font-normaltransition-all ease" :class="opacity">{{ data.description }}</p>
-      <div class="w-4/5 mt-6">
-        <button class="border border-green-500 text-green-500 dark:border-white dark:text-white text-start p-2 rounded-2xl">Read More</button>
+      <div class="hidden md:block w-4/5 mt-6" :class="opacity">
+        <button class="border border-green-500 text-green-500 dark:border-white dark:text-white text-start p-2 rounded-2xl">Seguir Leyendo</button>
       </div>
     </div>
 
@@ -14,6 +14,10 @@
       <div class="w-full md:w-2/3 flex">
         <img class="rounded-lg transition duration-700 ease-in-out" :class="opacity" :src="data.img" alt="img-nav" />
       </div>
+    </div>
+
+    <div class="block md:hidden w-full text-center mt-6" :class="opacity">
+        <button class="border border-green-500 text-green-500 dark:border-white dark:text-white text-start p-2 rounded-2xl">Seguir Leyendo</button>
     </div>
     
   </div>

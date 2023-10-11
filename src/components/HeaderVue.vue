@@ -1,5 +1,5 @@
 <template>
-  <header class="md:h-18 flex justify-between" :class="store.dark">
+  <header class="md:h-18 flex justify-between bg-slate-50" :class="store.dark">
     <div
       class="w-2/12 md:hidden dark:bg-gray-700 dark:text-white flex flex-col items-center justify-center"
     >
@@ -13,16 +13,16 @@
             <div class="flex justify-end mr-2"><button @click="show = !show">X</button></div>
             <nav class="w-screen">
               <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <a class="text-lg font-medium" href="http://">Inicio</a>
+                <RouterLink to="/home"  class="text-lg font-medium" >Inicio</RouterLink >
               </li>
               <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <a class="text-lg font-medium" href="http://">Streaming</a>
+                <RouterLink to="/streaming" class="text-lg font-medium" >Streaming</RouterLink >
               </li>
               <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <a class="text-lg font-medium" href="http://">Soporte</a>
+                <RouterLink to="" class="text-lg font-medium" >Soporte</RouterLink >
               </li>
               <li class="list-none my-2 mb-4 pl-2 hover:bg-gray-200">
-                <a class="text-lg font-medium" href="http://">About</a>
+                <RouterLink to="" class="text-lg font-medium" >About</RouterLink >
               </li>
             </nav>
           </div>
@@ -48,23 +48,23 @@
     <div class="flex md:w-full dark:bg-gray-700 dark:text-white pr-2">
       <nav class="md:flex gap-6 items-center w-5/6 justify-center hidden">
         <li class="list-none">
-          <a class="hover:text-blue-500 text-lg font-medium" href="http://">Inicio</a>
+          <RouterLink to="/" class="hover:text-blue-500 text-lg font-medium" >Inicio</RouterLink>
         </li>
         <li class="list-none">
-          <a class="hover:text-blue-500 text-lg font-medium" href="http://">Streaming</a>
+          <RouterLink to="/streaming" class="hover:text-blue-500 text-lg font-medium" >Streaming</RouterLink>
         </li>
         <li class="list-none">
-          <a class="hover:text-blue-500 text-lg font-medium" href="http://">Soporte</a>
+          <RouterLink to="" class="hover:text-blue-500 text-lg font-medium" >Soporte</RouterLink >
         </li>
         <li class="list-none">
-          <a class="hover:text-blue-500 text-lg font-medium" href="http://">About</a>
+          <RouterLink  to="" class="hover:text-blue-500 text-lg font-medium" >About</RouterLink >
         </li>
       </nav>
 
       <div class="flex items-center md:w-11/12">
-        <span class="border h-8 rounded-md hidden md:block w-2/5 relative">
-          <input class="w-full bg-transparent outline-none border-none" type="search" />
-          <font-awesome-icon icon="search" class="absolute right-2 top-1.5" />
+        <span class="h-8 rounded-md hidden md:block w-2/5 text-end">
+          <!-- <font-awesome-icon icon="search" class="mx-2"/> 
+          <font-awesome-icon icon="search" class="mx-2"/>  -->
         </span>
 
         <div class="flex items-center">
@@ -100,9 +100,9 @@
                 class="text-blue-800 border px-4 pb-2 w-32 rounded-lg dark:bg-gray-700 dark:text-white dark:border-none"
               >
                 <p class="py-2">@JuanMaria</p>
-                <a class="block my-2 hover:text-blue-500" href="http://">Ver Perfil</a>
+                <RouterLink to="" class="block my-2 hover:text-blue-500" >Ver Perfil</RouterLink >
                 <hr class="py-1" />
-                <a class="py-2 hover:text-red-500" href="http://">Cerrar Session</a>
+                <RouterLink to="" class="py-2 hover:text-red-500" >Cerrar Session</RouterLink >
               </div>
             </div>
           </div>

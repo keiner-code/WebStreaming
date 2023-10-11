@@ -1,5 +1,5 @@
 <template>
-  <div class="transform duration-500 ease-in-out hover:scale-105 m-4 w-64 border dark:border-gray-600 dark:shadow-lg rounded-lg shadow-xl float-left" :class="state.dark">
+  <div class="transform duration-500 ease-in-out hover:scale-105 m-6 w-64 border dark:border-gray-600 dark:shadow-lg rounded-lg shadow-xl float-left" :class="state.dark">
     <div class="relative dark:bg-gray-700 dark:text-white">
       <img
       class="rounded-t-xl"
@@ -14,16 +14,27 @@
       <p class="text-gray-500 text-start">
         este paquete contiene dos pantallas de Netfilx valido por 30 dias a la compra valido por 30 dias a la compra
       </p>
-      <span class="flex text-lg"><strong>Precio:</strong> <p class="ml-4">$10.000</p> </span>
+      <span class="flex justify-between text-lg">
+        <div class="flex"><strong>Precio:</strong> 
+        <p class="ml-4">$10.000</p> </div>
+        <button @click="state.changeShowDetail()" class="text-xl mr-2 text-yellow-500 dark:text-yellow-400"><font-awesome-icon icon="circle-info" /></button>
+      </span>
       <div class="flex justify-center">
         <button class="border p-2 my-2 rounded-md ">Comprar</button>
       </div>
     </div>
   </div>
+  <div v-show="state.showdetails" class="fixed w-full top-1/4 left-1/4 right-1/2">
+    <DetailsCardVue />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useStreamingStore } from '@/stores/streaming';
+import DetailsCardVue from './DetailsCardVue.vue';
 
 const state = useStreamingStore();
+
+console.log(state.showdetails);
+
 </script>

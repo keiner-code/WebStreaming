@@ -10,6 +10,16 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/streaming',
+      name: 'streaming',
+      component: () => import('../views/StreamingView.vue')
+    },
+    /* {
+      path: '/streaming/:id',
+      name: 'streamingId',
+      component: () => import('../components/DetailsCardVue.vue')
+    }, */
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

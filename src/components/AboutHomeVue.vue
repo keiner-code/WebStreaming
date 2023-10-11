@@ -1,5 +1,5 @@
 <template>
-  <div class="flex md:flex-row flex-col mt-10">
+  <div class="flex md:flex-row flex-col my-10">
     <div class="w-full md:w-1/2">
       <img class="rounded-xl" src="https://img.freepik.com/foto-gratis/grupo-companeros-trabajo-oficina-posando_23-2148985515.jpg?w=740&t=st=1696810716~exp=1696811316~hmac=a43d1d20604aa735dd48b0184f8e236ac78f046dc1524988f7194e9bf5e93756" alt="about" >
     </div>
