@@ -4,8 +4,10 @@ import CardHomeVue from '../components/CardHomeVue.vue'
 import HomeNavVue from '@/components/HomeNavVue.vue'
 import SuportHomeVue from '@/components/SuportHomeVue.vue';
 import { useStreamingStore } from '@/stores/streaming'
+import { onMounted } from 'vue';
 
-const state = useStreamingStore()
+const state = useStreamingStore();
+onMounted(()=> state.getAllTally());
 </script>
 
 <template>
@@ -22,13 +24,8 @@ const state = useStreamingStore()
         >
           Streaming
         </h1>
-
-        <div class="float-left mt-10 border-none">
-          <CardHomeVue />
-          <CardHomeVue />
-          <CardHomeVue />
-          <CardHomeVue />
-          <CardHomeVue />
+        <div v-for="item in state.tally" :key="item.id" class="float-left mt-10 border-none">
+          <CardHomeVue :tally="item" />
         </div>
       </div>
 

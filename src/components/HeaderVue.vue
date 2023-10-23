@@ -54,17 +54,21 @@
           <RouterLink to="/streaming" class="hover:text-blue-500 text-lg font-medium" >Streaming</RouterLink>
         </li>
         <li class="list-none">
+          <RouterLink v-if="profile" to="" class="hover:text-blue-500 text-lg font-medium" >Cuentas</RouterLink>
+        </li>
+        <li class="list-none">
           <RouterLink to="" class="hover:text-blue-500 text-lg font-medium" >Soporte</RouterLink >
         </li>
         <li class="list-none">
           <RouterLink  to="" class="hover:text-blue-500 text-lg font-medium" >About</RouterLink >
         </li>
+        <li v-if="profile?.rol == 'admin'" class="list-none">
+          <RouterLink  to="/dashboard" class="hover:text-blue-500 text-lg font-medium" >Dashboard</RouterLink >
+        </li>
       </nav>
 
       <div class="flex items-center md:w-11/12">
         <span class="h-8 rounded-md hidden md:block w-2/5 text-end">
-          <!-- <font-awesome-icon icon="search" class="mx-2"/> 
-          <font-awesome-icon icon="search" class="mx-2"/>  -->
         </span>
 
         <div class="flex items-center">
@@ -77,32 +81,34 @@
           <button @click="store.changeDark()"><font-awesome-icon icon="moon" class="ml-4" /></button>
         </div>
 
-        <div class="ml-6 md:flex md:flex-row md:h-10 w-full gap-4">
-          <button class="md:border w-32 md:p-2 md:rounded-lg md:border-blue-500 text-blue-500 hover:shadow-lg dark:text-white dark:border-white">
+        <div v-if="!auth.login" class="ml-6 md:flex md:flex-row md:h-10 w-full gap-4">
+          <RouterLink to="/session/login" class="text-center md:border w-32 md:p-2 md:rounded-lg md:border-blue-500 text-blue-500 hover:shadow-lg dark:text-white dark:border-white">
             Iniciar Sesion
-          </button>
-          <button class="md:border w-28 md:p-2 md:rounded-lg md:border-green-500 text-green-500 hover:shadow-lg dark:bg-white dark:text-black font-medium dark:border-white">
+          </RouterLink>
+          <RouterLink to="/session/register" class="text-center md:border w-28 md:p-2 md:rounded-lg md:border-green-500 text-green-500 hover:shadow-lg dark:bg-white dark:text-black font-medium dark:border-white">
             Registrarse
-          </button>
+          </RouterLink>
         </div>
 
-        <div class="ml-6 flex flex-col items-center justify-center md:w-36" v-show="login">
+        <div v-else class="ml-6 flex flex-col items-center justify-center md:w-36">
           <img
             class="w-10 rounded-full"
             src="https://img.freepik.com/psd-gratis/ilustracion-3d-avatar-o-perfil-humano_23-2150671142.jpg?w=826&t=st=1696642069~exp=1696642669~hmac=a135841facbd00bdb18a3a0801087cd666faf6886a790f1b7d9aab5449638091"
             alt="avatar"
           />
           <div class="text-sm hidden md:block relative">
-            Francisco rua
+            {{ profile?.name }} {{ profile?.lastName }}
             <button @click="showUser = !showUser"><font-awesome-icon icon="chevron-down" /></button>
-            <div class="absolute top-5" v-show="showUser">
+            <div class="absolute top-5 -left-5" v-show="showUser">
               <div
-                class="text-blue-800 border px-4 pb-2 w-32 rounded-lg dark:bg-gray-700 dark:text-white dark:border-none"
+                class="text-blue-800 border px-4 pb-2 w-full rounded-lg dark:bg-gray-700 dark:text-white dark:border-none"
               >
-                <p class="py-2">@JuanMaria</p>
-                <RouterLink to="" class="block my-2 hover:text-blue-500" >Ver Perfil</RouterLink >
+                <p class="py-2">{{ profile?.email }}</p>
+                <RouterLink v-if="profile?.rol == 'admin'" to="/dashboard" class="block my-2 hover:text-blue-500 text-violet-500" >Dashboard</RouterLink>
+                <p class="py-2">{{ profile?.rol }}</p>
+                <RouterLink v-if="profile?.rol == 'admin'" to="/session/register" class="block my-2 hover:text-blue-500 text-violet-500" >Register Admin</RouterLink>
                 <hr class="py-1" />
-                <RouterLink to="" class="py-2 hover:text-red-500" >Cerrar Session</RouterLink >
+                <button @click="auth.logoutUser()" class="hover:text-red-500" >Cerrar Session</button >
               </div>
             </div>
           </div>
@@ -113,14 +119,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import {useStreamingStore } from '../stores/streaming';
+import { useStreamingAuthStore } from '@/stores/auth';
+import type {Profile} from '@/types/index'
 
-const show = ref(false)
-const showUser = ref(false)
-const login = ref(false)
+const show = ref<boolean>(false)
+const showUser = ref<boolean>(false)
+const profile = ref<Profile>()
 
 const store = useStreamingStore();
+const auth = useStreamingAuthStore();
+
+onMounted(()=>{
+    const data = sessionStorage.getItem('profile');
+    if(data){
+      profile.value = JSON.parse(data);
+      auth.login = true;
+    }
+})
 
 </script>
 
