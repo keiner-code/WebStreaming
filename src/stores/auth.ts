@@ -6,7 +6,8 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export const useStreamingAuthStore = defineStore('auth',{
   state: () => ({
-    login: false
+    login: false,
+    userMoney: 0
   }),
   actions: {
     registerUser(user: createUserDto){
@@ -32,7 +33,8 @@ export const useStreamingAuthStore = defineStore('auth',{
           email: perfil.email,
           token: acces_token
         }
-        sessionStorage.setItem('profile', JSON.stringify(dataSession))
+        sessionStorage.setItem('profile', JSON.stringify(dataSession));
+        this.userMoney = perfil.money;
       })
       .catch(error =>{
         new Error(`Error -> ${error}`)

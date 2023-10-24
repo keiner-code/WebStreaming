@@ -33,6 +33,7 @@ export interface User{
   email: string,
   password: string,
   rol: string
+  money: number
 }
 export interface Profile{
   name: string,
@@ -42,4 +43,5 @@ export interface Profile{
   token: string
 }
 
-export interface createUserDto extends Omit<User, 'id'> {}
+export interface createUserDto extends Omit<User, 'id'> {
+}

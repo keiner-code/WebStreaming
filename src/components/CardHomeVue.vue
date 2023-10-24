@@ -17,20 +17,36 @@
         <p class="ml-4">$ {{ account.tally.price }}</p></div>
         <button @click="state.changeShowDetail(account.tally)" class="text-xl mr-2 text-yellow-500 dark:text-yellow-400"><font-awesome-icon icon="circle-info" /></button>
       </span>
-      <div class="flex justify-center">
-        <button class="border p-2 my-2 rounded-md ">Comprar</button>
+      <div  v-if="account.tally.price >= user.userMoney" class="flex justify-center">
+        <button @click="showConfirm = !showConfirm" class="border border-blue-400 text-blue-400 p-2 my-2 rounded-md ">Comprar</button>
+      </div>
+      <div v-else class="flex justify-center">
+        <button class="border border-green-400 text-green-400 p-2 my-2 rounded-md ">Recargar Dinero</button>
       </div>
     </div>
   </div>
   <div v-show="state.showdetails" class="fixed w-full top-1/4 left-12 md:left-1/4 md:right-1/2">
     <DetailsCardVue />
   </div>
+
+  <div v-show="showConfirm" class="fixed top-1/2 left-1/3 text-center md:w-1/2">
+   <div class="bg-gray-400 shadow-2xl rounded-lg py-2 w-2/3 text-white">
+    <p class="text-lg font-medium">¿Esta seguro(a) que desea comprar esta cuenta?</p>
+    <div class="flex md:block md:text-end md:mr-4 md:mt-4">
+      <button @click="showConfirm = !showConfirm" class="bg-red-400 ml-2 md:ml-6 p-1 rounded-lg" >Cancelar</button>
+      <button class="bg-green-400 ml-3 md:ml-6 p-1 rounded-lg" >Comprar</button>
+    </div>
+   </div>
+  </div>
+
 </template>
 
 <script setup lang="ts">
 import { useStreamingStore } from '@/stores/streaming';
 import DetailsCardVue from './DetailsCardVue.vue';
 import type { Streaming } from '@/types';
+import { useStreamingAuthStore } from '@/stores/auth';
+import { ref } from 'vue';
 
 type DataProps = {
   tally: Streaming
@@ -39,4 +55,6 @@ type DataProps = {
 const account = defineProps<DataProps>()
 
 const state = useStreamingStore();
+const user = useStreamingAuthStore();
+const showConfirm = ref(false);
 </script>

@@ -70,7 +70,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useStreamingAuthStore } from '@/stores/auth'
-import type { Profile } from '@/types';
+import type { Profile, createUserDto } from '@/types';
 
 const email = ref('')
 const password = ref('')
@@ -85,12 +85,13 @@ if(sessionStorage.getItem('profile')){
 }
 
 const handlerCreate = () => {
-  const newUser = {
+  const newUser: createUserDto = {
     email: email.value,
     password: password.value,
     name: names.value,
     lastName: lastNames.value,
-    rol: rol.value
+    rol: rol.value,
+    money: 0
   }
   store.registerUser(newUser)
 }

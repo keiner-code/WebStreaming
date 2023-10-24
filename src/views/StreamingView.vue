@@ -18,7 +18,8 @@
             />
             <font-awesome-icon icon="magnifying-glass" class="relative right-2" />
         </div>
-        <div>Dinero : <strong>$200.000</strong></div>
+        <div>Dinero : <strong>${{ user.userMoney }}</strong>
+        </div>
         <div v-for="item in state.searchTallyByTitle(titleAccount)" :key="item.id" class="float-left mt-10 border-none">
           <CardHomeVue :tally="item" />
         </div>
@@ -30,10 +31,12 @@
 <script setup lang="ts">
 import CardHomeVue from '@/components/CardHomeVue.vue'
 import HeaderStreamVue from '@/components/HeaderStreamVue.vue'
+import { useStreamingAuthStore } from '@/stores/auth';
 import { useStreamingStore } from '@/stores/streaming'
 import { onMounted, ref } from 'vue';
 
 const titleAccount = ref('');
-const state = useStreamingStore()
+const state = useStreamingStore();
+const user = useStreamingAuthStore();
 onMounted(()=> state.getAllTally())
 </script>

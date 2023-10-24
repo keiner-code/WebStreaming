@@ -54,13 +54,13 @@
           <RouterLink to="/streaming" class="hover:text-blue-500 text-lg font-medium" >Streaming</RouterLink>
         </li>
         <li class="list-none">
-          <RouterLink v-if="profile" to="" class="hover:text-blue-500 text-lg font-medium" >Cuentas</RouterLink>
+          <RouterLink v-if="profile" to="/accounts" class="hover:text-blue-500 text-lg font-medium" >Cuentas</RouterLink>
         </li>
         <li class="list-none">
           <RouterLink to="" class="hover:text-blue-500 text-lg font-medium" >Soporte</RouterLink >
         </li>
         <li class="list-none">
-          <RouterLink  to="" class="hover:text-blue-500 text-lg font-medium" >About</RouterLink >
+          <RouterLink  to="/about" class="hover:text-blue-500 text-lg font-medium" >About</RouterLink >
         </li>
         <li v-if="profile?.rol == 'admin'" class="list-none">
           <RouterLink  to="/dashboard" class="hover:text-blue-500 text-lg font-medium" >Dashboard</RouterLink >
