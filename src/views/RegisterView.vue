@@ -70,7 +70,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useStreamingAuthStore } from '@/stores/auth'
-import type { Profile, createUserDto } from '@/types';
+import type { Profile, createUserDto } from '@/types'
 
 const email = ref('')
 const password = ref('')
@@ -78,9 +78,9 @@ const names = ref('')
 const lastNames = ref('')
 const rol = ref('')
 const profile = ref<Profile>()
-const store = useStreamingAuthStore();
+const store = useStreamingAuthStore()
 
-if(sessionStorage.getItem('profile')){
+if (sessionStorage.getItem('profile')) {
   profile.value = JSON.parse(sessionStorage.getItem('profile') as string)
 }
 

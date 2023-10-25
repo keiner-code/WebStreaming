@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import AboutHomeVueVue from '@/components/AboutHomeVue.vue';
+import AboutHomeVueVue from '@/components/AboutHomeVue.vue'
 import CardHomeVue from '../components/CardHomeVue.vue'
 import HomeNavVue from '@/components/HomeNavVue.vue'
-import SuportHomeVue from '@/components/SuportHomeVue.vue';
+import SuportHomeVue from '@/components/SuportHomeVue.vue'
 import { useStreamingStore } from '@/stores/streaming'
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
 
-const state = useStreamingStore();
-onMounted(()=> state.getAllTally());
+const state = useStreamingStore()
+onMounted(() => state.getAllTally())
 </script>
 
 <template>

@@ -10,17 +10,22 @@
           Streaming
         </h1>
         <div class="w-full flex justify-end mt-10 items-center">
-            <input
+          <input
             type="text"
             class="border w-1/5 outline-none bg-transparent rounded-lg h-7 absolute"
             placeholder="Ingrese el titulo"
             v-model="titleAccount"
-            />
-            <font-awesome-icon icon="magnifying-glass" class="relative right-2" />
+          />
+          <font-awesome-icon icon="magnifying-glass" class="relative right-2" />
         </div>
-        <div>Dinero : <strong>${{ user.userMoney }}</strong>
+        <div>
+          Dinero : <strong>{{ formatter.format(profile?.money as number) }}</strong>
         </div>
-        <div v-for="item in state.searchTallyByTitle(titleAccount)" :key="item.id" class="float-left mt-10 border-none">
+        <div
+          v-for="item in state.searchTallyByTitle(titleAccount)"
+          :key="item.id"
+          class="float-left mt-10 border-none"
+        >
           <CardHomeVue :tally="item" />
         </div>
       </div>
@@ -31,12 +36,21 @@
 <script setup lang="ts">
 import CardHomeVue from '@/components/CardHomeVue.vue'
 import HeaderStreamVue from '@/components/HeaderStreamVue.vue'
-import { useStreamingAuthStore } from '@/stores/auth';
 import { useStreamingStore } from '@/stores/streaming'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
+import type { Profile } from '@/types/index'
 
-const titleAccount = ref('');
-const state = useStreamingStore();
-const user = useStreamingAuthStore();
-onMounted(()=> state.getAllTally())
+const titleAccount = ref('')
+const state = useStreamingStore()
+const profile = ref<Profile>()
+
+onMounted(() => {
+  state.getAllTally()
+  profile.value = JSON.parse(sessionStorage.getItem('profile') as string)
+})
+
+const formatter = new Intl.NumberFormat('es-CO', {
+  style: 'currency',
+  currency: 'COP'
+})
 </script>

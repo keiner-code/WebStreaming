@@ -13,16 +13,16 @@
             <div class="flex justify-end mr-2"><button @click="show = !show">X</button></div>
             <nav class="w-screen">
               <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <RouterLink to="/home"  class="text-lg font-medium" >Inicio</RouterLink >
+                <RouterLink to="/home" class="text-lg font-medium">Inicio</RouterLink>
               </li>
               <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <RouterLink to="/streaming" class="text-lg font-medium" >Streaming</RouterLink >
+                <RouterLink to="/streaming" class="text-lg font-medium">Streaming</RouterLink>
               </li>
               <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <RouterLink to="" class="text-lg font-medium" >Soporte</RouterLink >
+                <RouterLink to="" class="text-lg font-medium">Soporte</RouterLink>
               </li>
               <li class="list-none my-2 mb-4 pl-2 hover:bg-gray-200">
-                <RouterLink to="" class="text-lg font-medium" >About</RouterLink >
+                <RouterLink to="" class="text-lg font-medium">About</RouterLink>
               </li>
             </nav>
           </div>
@@ -48,28 +48,33 @@
     <div class="flex md:w-full dark:bg-gray-700 dark:text-white pr-2">
       <nav class="md:flex gap-6 items-center w-5/6 justify-center hidden">
         <li class="list-none">
-          <RouterLink to="/" class="hover:text-blue-500 text-lg font-medium" >Inicio</RouterLink>
+          <RouterLink to="/" class="hover:text-blue-500 text-lg font-medium">Inicio</RouterLink>
         </li>
         <li class="list-none">
-          <RouterLink to="/streaming" class="hover:text-blue-500 text-lg font-medium" >Streaming</RouterLink>
+          <RouterLink to="/streaming" class="hover:text-blue-500 text-lg font-medium"
+            >Streaming</RouterLink
+          >
         </li>
         <li class="list-none">
-          <RouterLink v-if="profile" to="/accounts" class="hover:text-blue-500 text-lg font-medium" >Cuentas</RouterLink>
+          <RouterLink v-if="profile" to="/accounts" class="hover:text-blue-500 text-lg font-medium"
+            >Cuentas</RouterLink
+          >
         </li>
         <li class="list-none">
-          <RouterLink to="" class="hover:text-blue-500 text-lg font-medium" >Soporte</RouterLink >
+          <RouterLink to="" class="hover:text-blue-500 text-lg font-medium">Soporte</RouterLink>
         </li>
         <li class="list-none">
-          <RouterLink  to="/about" class="hover:text-blue-500 text-lg font-medium" >About</RouterLink >
+          <RouterLink to="/about" class="hover:text-blue-500 text-lg font-medium">About</RouterLink>
         </li>
         <li v-if="profile?.rol == 'admin'" class="list-none">
-          <RouterLink  to="/dashboard" class="hover:text-blue-500 text-lg font-medium" >Dashboard</RouterLink >
+          <RouterLink to="/dashboard" class="hover:text-blue-500 text-lg font-medium"
+            >Dashboard</RouterLink
+          >
         </li>
       </nav>
 
       <div class="flex items-center md:w-11/12">
-        <span class="h-8 rounded-md hidden md:block w-2/5 text-end">
-        </span>
+        <span class="h-8 rounded-md hidden md:block w-2/5 text-end"> </span>
 
         <div class="flex items-center">
           <span
@@ -78,14 +83,22 @@
             <font-awesome-icon icon="star" class="text-xs" />
             <p class="ml-1">2.5k</p>
           </span>
-          <button @click="store.changeDark()"><font-awesome-icon icon="moon" class="ml-4" /></button>
+          <button @click="store.changeDark()">
+            <font-awesome-icon icon="moon" class="ml-4" />
+          </button>
         </div>
 
         <div v-if="!auth.login" class="ml-6 md:flex md:flex-row md:h-10 w-full gap-4">
-          <RouterLink to="/session/login" class="text-center md:border w-32 md:p-2 md:rounded-lg md:border-blue-500 text-blue-500 hover:shadow-lg dark:text-white dark:border-white">
+          <RouterLink
+            to="/session/login"
+            class="text-center md:border w-32 md:p-2 md:rounded-lg md:border-blue-500 text-blue-500 hover:shadow-lg dark:text-white dark:border-white"
+          >
             Iniciar Sesion
           </RouterLink>
-          <RouterLink to="/session/register" class="text-center md:border w-28 md:p-2 md:rounded-lg md:border-green-500 text-green-500 hover:shadow-lg dark:bg-white dark:text-black font-medium dark:border-white">
+          <RouterLink
+            to="/session/register"
+            class="text-center md:border w-28 md:p-2 md:rounded-lg md:border-green-500 text-green-500 hover:shadow-lg dark:bg-white dark:text-black font-medium dark:border-white"
+          >
             Registrarse
           </RouterLink>
         </div>
@@ -104,11 +117,23 @@
                 class="text-blue-800 border px-4 pb-2 w-full rounded-lg dark:bg-gray-700 dark:text-white dark:border-none"
               >
                 <p class="py-2">{{ profile?.email }}</p>
-                <RouterLink v-if="profile?.rol == 'admin'" to="/dashboard" class="block my-2 hover:text-blue-500 text-violet-500" >Dashboard</RouterLink>
+                <RouterLink
+                  v-if="profile?.rol == 'admin'"
+                  to="/dashboard"
+                  class="block my-2 hover:text-blue-500 text-violet-500"
+                  >Dashboard</RouterLink
+                >
                 <p class="py-2">{{ profile?.rol }}</p>
-                <RouterLink v-if="profile?.rol == 'admin'" to="/session/register" class="block my-2 hover:text-blue-500 text-violet-500" >Register Admin</RouterLink>
-                <hr class="py-1" />
-                <button @click="auth.logoutUser()" class="hover:text-red-500" >Cerrar Session</button >
+                <RouterLink
+                  v-if="profile?.rol == 'admin'"
+                  to="/session/register"
+                  class="block my-2 hover:text-blue-500 text-violet-500"
+                  >Register Admin</RouterLink
+                >
+                <div class="py-1"></div>
+                <button @click="auth.logoutUser()" class="hover:text-red-500">
+                  Cerrar Session
+                </button>
               </div>
             </div>
           </div>
@@ -120,25 +145,24 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import {useStreamingStore } from '../stores/streaming';
-import { useStreamingAuthStore } from '@/stores/auth';
-import type {Profile} from '@/types/index'
+import { useStreamingStore } from '../stores/streaming'
+import { useStreamingAuthStore } from '@/stores/auth'
+import type { Profile } from '@/types/index'
 
 const show = ref<boolean>(false)
 const showUser = ref<boolean>(false)
 const profile = ref<Profile>()
 
-const store = useStreamingStore();
-const auth = useStreamingAuthStore();
+const store = useStreamingStore()
+const auth = useStreamingAuthStore()
 
-onMounted(()=>{
-    const data = sessionStorage.getItem('profile');
-    if(data){
-      profile.value = JSON.parse(data);
-      auth.login = true;
-    }
+onMounted(() => {
+  const data = sessionStorage.getItem('profile')
+  if (data) {
+    profile.value = JSON.parse(data)
+    auth.login = true
+  }
 })
-
 </script>
 
 <style scoped>

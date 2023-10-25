@@ -9,13 +9,17 @@
 </template>
 
 <script setup lang="ts">
-import type { Alert } from '@/types';
-import { useStreamingStore } from '@/stores/streaming';
-import { onMounted } from 'vue';
+import type { Alert } from '@/types'
+import { useStreamingStore } from '@/stores/streaming'
+import { onMounted } from 'vue'
 
-const state = useStreamingStore();
+const state = useStreamingStore()
 
-onMounted(() => setTimeout(()=>{state.alert.show = false},3000))
+onMounted(() =>
+  setTimeout(() => {
+    state.alert.show = false
+  }, 3000)
+)
 
 const alert = defineProps<Alert>()
 </script>

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import  type {Streaming, Alert, createStreamingDto} from '../types/index'
+import type { Streaming, Alert, createStreamingDto } from '../types/index'
 import { db } from '../utils/firebase'
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore'
 
 const initialAlert: Alert = {
   title: '',
@@ -10,8 +10,8 @@ const initialAlert: Alert = {
   icon: '',
   show: false
 }
-const initialState: Streaming[] = [];
-const details:  Streaming = {
+const initialState: Streaming[] = []
+const details: Streaming = {
   id: '',
   image: '',
   title: '',
@@ -20,7 +20,7 @@ const details:  Streaming = {
   duration: '',
   renewal: false,
   price: 0
-};
+}
 
 export const useStreamingStore = defineStore('streaming', {
   state: () => ({
@@ -30,27 +30,29 @@ export const useStreamingStore = defineStore('streaming', {
     alert: initialAlert,
     detailsAccount: details
   }),
-  
+
   getters: {
-    getByIdTally: (state) => (id: string): Streaming | undefined => {
-      return state.tally.find(item => item.id == id);
-    },
+    getByIdTally:
+      (state) =>
+      (id: string): Streaming | undefined => {
+        return state.tally.find((item) => item.id == id)
+      },
     searchTallyByTitle: (state) => (title: string) => {
-      return state.tally.filter(value => value.title.toLowerCase().includes(title.toLowerCase()))
+      return state.tally.filter((value) => value.title.toLowerCase().includes(title.toLowerCase()))
     }
   },
   actions: {
-    changeDark(){
+    changeDark() {
       this.dark == '' ? (this.dark = 'dark') : (this.dark = '')
     },
-    changeShowDetail(details: Streaming){
-      this.detailsAccount = details;
-      this.showdetails = !this.showdetails;
+    changeShowDetail(details: Streaming) {
+      this.detailsAccount = details
+      this.showdetails = !this.showdetails
     },
-    async create(data: createStreamingDto): Promise<boolean | undefined>{
+    async create(data: createStreamingDto): Promise<boolean | undefined> {
       try {
-        const docRef = await addDoc(collection(db, 'streaming'), data);
-        if(docRef.id){
+        const docRef = await addDoc(collection(db, 'streaming'), data)
+        if (docRef.id) {
           this.alert = {
             title: 'Cuenta Agregada',
             type: 'bg-green-500',
@@ -58,7 +60,7 @@ export const useStreamingStore = defineStore('streaming', {
             icon: 'face-smile',
             show: true
           }
-          return true;
+          return true
         }
       } catch (error) {
         this.alert = {
@@ -68,14 +70,14 @@ export const useStreamingStore = defineStore('streaming', {
           icon: 'face-sad-tear',
           show: true
         }
-        return false;
+        return false
       }
     },
-    async getAllTally(){
-      this.tally = [];
-      const querySnapshot = await getDocs(collection(db, 'streaming'));
+    async getAllTally() {
+      this.tally = []
+      const querySnapshot = await getDocs(collection(db, 'streaming'))
       querySnapshot.forEach((doc) => {
-       this.tally.push({
+        this.tally.push({
           id: doc.id,
           image: doc.data().image,
           title: doc.data().title,
@@ -85,20 +87,20 @@ export const useStreamingStore = defineStore('streaming', {
           renewal: doc.data().renewal,
           price: doc.data().price
         })
-      });
+      })
     },
-    async editTally(changes: createStreamingDto, id: string): Promise<boolean>{
-      const tallyRef = doc(db, 'streaming', id);
-      if(tallyRef.id){
-        await updateDoc(tallyRef, changes);
-        return true;
-      }else{
-        return false;
+    async editTally(changes: createStreamingDto, id: string): Promise<boolean> {
+      const tallyRef = doc(db, 'streaming', id)
+      if (tallyRef.id) {
+        await updateDoc(tallyRef, changes)
+        return true
+      } else {
+        return false
       }
     },
-    async deleteTally(id: string){
+    async deleteTally(id: string) {
       try {
-        await deleteDoc(doc(db,'streaming',id));
+        await deleteDoc(doc(db, 'streaming', id))
         this.alert = {
           title: 'Cuenta Eliminada',
           type: 'bg-red-500',

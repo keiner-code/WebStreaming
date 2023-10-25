@@ -14,27 +14,27 @@
       <table class="table-column-group">
         <thead>
           <tr class="border-b border-blue-900 dark:border-white">
-            <th>Imagen</th>
+            <th>Cuenta</th>
             <th>Cliente</th>
             <th>Usuario</th>
             <th>Clave</th>
             <th>Pin Perfil</th>
-            <th>Inicia</th>
-            <th>Finaliza</th>
-            <th>Nota</th>
+            <th>Fecha Inicia</th>
+            <th>Fecha Finaliza</th>
+            <th>⚠NOTA</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr  class="border-b border-blue-900 dark:border-white text-center">
-            <td class="w-1/6 py-1"><img class="w-full" src="https://img.freepik.com/vector-premium/logotipo-netflix-diseno-vector-maqueta-telefono-inteligente-fondo-blanco-apto-web-icono-aplicaciones-moviles_771881-297.jpg?w=1480" alt="img-streaming"></td>
-            <td>Angie</td>
-            <td>tcplus01@netplexcaribe.com</td>
-            <td>plus20300*</td>
-            <td>1986</td>
-            <td>20/10/2023</td>
-            <td>19/11/2023</td>
-            <td class="w-1/6">⚠ NOTA: PROHIBIDO🚫 ELIMINAR ❌LOS PERFILES DE LAS DEMAS PERSONAS 👤- PROHIBIDO🚫 CAMBIAR CLAVES 🔒</td>
+          <tr v-for="value in accounts.getAllAccountByUser(idUser,1)" :key="value.IdUser" class="border-b border-blue-900 dark:border-white text-center">
+            <td>{{ value.title }}</td>
+            <td>{{ value.cliente }}</td>
+            <td>{{ value.correo }}</td>
+            <td>{{value.clave}}</td>
+            <td>{{value.pinPerfil}}</td>
+            <td>{{value.fechaInicial}}</td>
+            <td>{{ value.fechaFinaliza }}</td>
+            <td class="w-1/6">{{ value.nota }}</td>
             <td>
               <p><button class="border border-green-600 text-green-600 p-1 my-1 rounded-lg" >Enviar A WhatsApp</button></p>
               <p><button class="border border-yellow-500 text-yellow-500 p-1 my-1 rounded-lg" >Reportar Problema</button></p>
@@ -48,6 +48,19 @@
 </template>
 
 <script setup lang="ts">
+import { useSalesAccountsStore } from '@/stores/salesAcconts';
 import { useStreamingStore } from '@/stores/streaming';
-const state = useStreamingStore()
+import type { Profile } from '@/types';
+import { onMounted, ref } from 'vue';
+const state = useStreamingStore();
+const accounts = useSalesAccountsStore();
+const idUser = ref('');
+
+onMounted(()=>{
+  if(sessionStorage.getItem('profile')){
+    accounts.getAllAccountUser();
+    const profile: Profile = JSON.parse(sessionStorage.getItem('profile') as string);
+    idUser.value = profile.idUser
+  }
+})
 </script>

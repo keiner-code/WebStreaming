@@ -16,7 +16,7 @@ const router = createRouter({
     },
     {
       path: '/accounts',
-      name:'accounts',
+      name: 'accounts',
       component: () => import('../views/AccountsView.vue')
     },
     {
@@ -27,27 +27,27 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('../views/Dasboards/DashboardView.vue'),
+      component: () => import('../views/Dasboards/DashboardView.vue')
     },
     {
-      path: '/dashboard/tally',
-      name: 'dashboard',
-      component: () => import('../views/Dasboards/TallyView.vue'),
+      path: '/dashboard/accounts',
+      name: 'dashboard-accounts',
+      component: () => import('../views/Dasboards/AccountsView.vue')
     },
     {
-      path: '/dashboard/create',
-      component: () => import('../views/Dasboards/CreateView.vue'),
-      name: 'create'
+      path: '/dashboard/manage',
+      component: () => import('../views/Dasboards/ManageAccounts.vue'),
+      name: 'manage'
     },
     {
-      path: '/dashboard/edit',
-      component: () => import('../views/Dasboards/EditView.vue'),
-       name: 'edit'
+      path: '/dashboard/sold-accounts',
+      component: () => import('../views/Dasboards/SoldAccounts.vue'),
+      name: 'sold-accounts'
     },
     {
-      path: '/dashboard/delete',
-      component: () => import('../views/Dasboards/DeleteView.vue'),
-      name: 'delete'
+      path: '/dashboard/manage-sold-account',
+      component: () => import('../views/Dasboards/ManageSoldAccount.vue'),
+      name: 'manage-sold-account'
     },
     {
       path: '/session/login',
@@ -60,6 +60,6 @@ const router = createRouter({
       name: 'register'
     }
   ]
-});
+})
 
 export default router

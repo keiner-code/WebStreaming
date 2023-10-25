@@ -1,54 +1,72 @@
-import { defineStore } from "pinia";
-import { auth, db } from "@/utils/firebase";
-import type { Profile, User, createUserDto } from "@/types";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from 'firebase/auth';
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { defineStore } from 'pinia'
+import { auth, db } from '@/utils/firebase'
+import type { Profile, createUserDto } from '@/types'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { addDoc, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore'
 
-export const useStreamingAuthStore = defineStore('auth',{
+export const useStreamingAuthStore = defineStore('auth', {
   state: () => ({
-    login: false,
-    userMoney: 0
+    login: false
   }),
   actions: {
-    registerUser(user: createUserDto){
+    registerUser(user: createUserDto) {
       createUserWithEmailAndPassword(auth, user.email, user.password)
-      .then(async (userCredential) => {
-        const {uid} = userCredential.user;
-        await addDoc(collection(db, 'user'), {...user,id: uid})
-      })
-      .catch(error => {
-        console.log(error);
-      })
+        .then(async (userCredential) => {
+          const { uid } = userCredential.user
+          await addDoc(collection(db, 'user'), { ...user, id: uid })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
-    async loginUser(email: string, password: string){
-     await signInWithEmailAndPassword(auth, email, password)
-      .then(async userCredential => {
-        const user = userCredential.user;
-        const acces_token = await user.getIdToken().then(token => (token))
-        const perfil = await this.getPerfilUser(user.uid) as User;
-        const dataSession: Profile = {
-          name: perfil.name,
-          lastName: perfil.lastName,
-          rol: perfil.rol,
-          email: perfil.email,
-          token: acces_token
-        }
-        sessionStorage.setItem('profile', JSON.stringify(dataSession));
-        this.userMoney = perfil.money;
-      })
-      .catch(error =>{
-        new Error(`Error -> ${error}`)
-      });
+    async loginUser(email: string, password: string) {
+      await signInWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+          const user = userCredential.user
+          const acces_token = await user.getIdToken().then((token) => token)
+          const { perfil, id } = await this.getPerfilUser(user.uid)
+
+          const dataSession: Profile = {
+            name: perfil.name,
+            lastName: perfil.lastName,
+            rol: perfil.rol,
+            email: perfil.email,
+            money: perfil.money,
+            token: acces_token,
+            id,
+            idUser: perfil.id
+          }
+          sessionStorage.setItem('profile', JSON.stringify(dataSession))
+        })
+        .catch((error) => {
+          new Error(`Error -> ${error}`)
+        })
     },
-    async getPerfilUser(id: string){
+    async getPerfilUser(id: string) {
       const querySnapshot = await getDocs(query(collection(db, 'user'), where('id', '==', id)))
-      return querySnapshot.docs[0].data();
+      return {
+        perfil: querySnapshot.docs[0].data(),
+        id: querySnapshot.docs[0].id
+      }
     },
-    async logoutUser(){
-      signOut(auth).then(() =>{
-        this.login = false;
+    async logoutUser() {
+      signOut(auth).then(() => {
+        this.login = false
         sessionStorage.removeItem('profile')
       })
+    },
+    async updatePriceUser(price: number, id: string) {
+      try {
+        const userRef = doc(db, 'user', id)
+        if (userRef.id) {
+          await updateDoc(userRef, { money: price })
+          return true
+        } else {
+          return false
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 })

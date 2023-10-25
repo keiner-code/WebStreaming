@@ -12,14 +12,21 @@
         <li class="list-decimal my-2">Especialista en Aplicaciones</li>
       </ol>
       <div class="flex justify-center mt-8 mb-4 md:mb-0">
-        <button class="shadow-xl border border-blue-500 text-blue-500 text-lg px-2 py-1 rounded-lg dark:bg-white font-medium dark:border-none dark:text-black">Mas informacion</button>
+        <button
+          class="shadow-xl border border-blue-500 text-blue-500 text-lg px-2 py-1 rounded-lg dark:bg-white font-medium dark:border-none dark:text-black"
+        >
+          Mas informacion
+        </button>
       </div>
     </div>
     <div class="w-full md:w-1/2">
-      <img class="rounded-xl" src="https://img.freepik.com/foto-gratis/retrato-mujer-trabajadora-servicio-al-cliente_144627-37943.jpg?w=740&t=st=1696808514~exp=1696809114~hmac=c0a51a3228da77a59ef8d79ea64aebec7776eb97719e11befdee2c91de3593d5" alt="support" >
+      <img
+        class="rounded-xl"
+        src="https://img.freepik.com/foto-gratis/retrato-mujer-trabajadora-servicio-al-cliente_144627-37943.jpg?w=740&t=st=1696808514~exp=1696809114~hmac=c0a51a3228da77a59ef8d79ea64aebec7776eb97719e11befdee2c91de3593d5"
+        alt="support"
+      />
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
