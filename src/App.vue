@@ -38,6 +38,12 @@ const state = useStreamingStore()
     />
   </div>
 
+  <div class="fixed z-20 bottom-0 right-0 pr-6 pb-6 animate-pulse">
+    <RouterLink to="/">
+      <img class="w-14" src="./assets/whatsapppng.webp" alt="whassApp" />
+    </RouterLink>
+  </div>
+
   <RouterView v-if="!dashboard && !session" />
   <FooterVue v-if="!dashboard && !session" />
 </template>

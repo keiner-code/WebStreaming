@@ -27,6 +27,7 @@ export const useStreamingStore = defineStore('streaming', {
     tally: initialState,
     dark: '',
     showdetails: false,
+    showInfo: false,
     alert: initialAlert,
     detailsAccount: details
   }),

@@ -4,7 +4,7 @@
     :class="state.dark"
   >
     <div class="relative dark:bg-gray-700 dark:text-white">
-      <img class="rounded-t-xl" :src="account.tally.image" alt="carImg" />
+      <img class="rounded-t-xl h-36 w-full" :src="account.tally.image" alt="carImg" />
       <font-awesome-icon
         icon="circle-check"
         class="absolute top-0 right-0 pr-2 pt-2 text-xl text-green-400"
@@ -35,7 +35,7 @@
         </button>
       </div>
       <div v-else class="flex justify-center">
-        <button class="border border-green-400 text-green-400 p-2 my-2 rounded-md">
+        <button @click="state.showInfo = !state.showInfo" class="border border-green-400 text-green-400 p-2 my-2 rounded-md">
           Recargar Dinero
         </button>
       </div>
@@ -70,6 +70,10 @@
       </div>
     </div>
   </div>
+
+  <div v-show="state.showInfo" class="fixed z-10 top-1/4 w-2/6 left-1/3 border bg-green-400 p-2 bg-opacity-90 rounded-lg shadow-lg">
+    <AlertInfo />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -79,6 +83,7 @@ import DetailsCardVue from './DetailsCardVue.vue'
 import type { Streaming, createSaleAccountDto, Profile } from '@/types'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import AlertInfo from './AlertInfo.vue'
 
 type DataProps = {
   tally: Streaming
@@ -91,8 +96,8 @@ const sold = useSalesAccountsStore()
 const router = useRouter()
 
 const showConfirm = ref(false)
-const cliente = ref('')
-const money = ref(0)
+const cliente = ref<string>('')
+const money = ref<number>(0)
 
 onMounted(() => {
   if (sessionStorage.getItem('profile')) {

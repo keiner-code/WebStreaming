@@ -61,7 +61,7 @@
           >
         </li>
         <li class="list-none">
-          <RouterLink to="" class="hover:text-blue-500 text-lg font-medium">Soporte</RouterLink>
+          <RouterLink to="/support" class="hover:text-blue-500 text-lg font-medium">Soporte</RouterLink>
         </li>
         <li class="list-none">
           <RouterLink to="/about" class="hover:text-blue-500 text-lg font-medium">About</RouterLink>

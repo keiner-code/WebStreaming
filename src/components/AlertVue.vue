@@ -18,7 +18,7 @@ const state = useStreamingStore()
 onMounted(() =>
   setTimeout(() => {
     state.alert.show = false
-  }, 3000)
+  }, 4000)
 )
 
 const alert = defineProps<Alert>()

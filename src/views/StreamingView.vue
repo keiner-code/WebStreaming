@@ -19,7 +19,7 @@
           <font-awesome-icon icon="magnifying-glass" class="relative right-2" />
         </div>
         <div>
-          Dinero : <strong>{{ formatter.format(profile?.money as number) }}</strong>
+          Dinero : <strong>{{ profile?.money ? formatter.format(profile?.money as number): '0 $' }}</strong>
         </div>
         <div
           v-for="item in state.searchTallyByTitle(titleAccount)"
