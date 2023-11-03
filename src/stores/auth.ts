@@ -73,6 +73,7 @@ export const useStreamingAuthStore = defineStore('auth', {
     },
     async getAllSupportsUser(){
       try {
+        this.supports = [];
         const querySnapshot = await getDocs(query(collection(db, 'user'), where('rol', '==', 'soporte')));
         querySnapshot.docs.forEach((user) => {
           this.supports.push({
