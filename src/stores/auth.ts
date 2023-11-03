@@ -1,12 +1,15 @@
 import { defineStore } from 'pinia'
 import { auth, db } from '@/utils/firebase'
-import type { Profile, createUserDto } from '@/types'
+import type { Profile, User, createUserDto } from '@/types'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { addDoc, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore'
 
+const initialSupport: User[] = []
+
 export const useStreamingAuthStore = defineStore('auth', {
   state: () => ({
-    login: false
+    login: false,
+    supports: initialSupport
   }),
   actions: {
     registerUser(user: createUserDto) {
@@ -66,6 +69,27 @@ export const useStreamingAuthStore = defineStore('auth', {
         }
       } catch (error) {
         console.log(error)
+      }
+    },
+    async getAllSupportsUser(){
+      try {
+        const querySnapshot = await getDocs(query(collection(db, 'user'), where('rol', '==', 'soporte')));
+        querySnapshot.docs.forEach((user) => {
+          this.supports.push({
+            id: user.data().id,
+            name: user.data().name,
+            lastName: user.data().lastName,
+            email: user.data().email,
+            password: user.data().password,
+            rol: user.data().rol,
+            money: user.data().money
+          });
+          
+        })
+        
+      } catch (error) {
+        console.log(error);
+        
       }
     }
   }

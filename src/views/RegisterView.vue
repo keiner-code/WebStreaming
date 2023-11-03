@@ -51,11 +51,12 @@
               <option value="">Selecione Un perfil</option>
               <option value="user">Usuario</option>
               <option value="vendedor">Vendedor</option>
+              <option v-if="profile?.rol == 'admin'" value="soporte">Soporte</option>
               <option v-if="profile?.rol == 'admin'" value="admin">Administrador</option>
             </select>
           </div>
           <div class="w-full my-4 flex justify-center">
-            <button class="bg-green-500 rounded-md text-white p-2">Iniciar Session</button>
+            <button class="bg-green-500 rounded-md text-white p-2">Registrars</button>
           </div>
           <div class="w-full my-4 flex justify-between px-2">
             <RouterLink to="/" class="text-blue-500">Regresar</RouterLink>

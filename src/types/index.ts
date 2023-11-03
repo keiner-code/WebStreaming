@@ -1,3 +1,4 @@
+
 export type Data = {
   title: string
   img: string
@@ -61,5 +62,16 @@ export interface SaleAccount {
   price: number
   state: string
 }
+
+export interface Message {
+  name: string
+  message: string
+  time: string
+}
+export interface ChatUser {
+  idUser: string
+  name: string
+}
+
 
 export interface createSaleAccountDto extends Omit<SaleAccount, 'id'> {}
