@@ -1,6 +1,6 @@
 <template>
-  <div class="flex">
-    <div class="w-1/3 px-2 flex flex-col">
+  <div class="flex md:flex-row flex-col">
+    <div class="md:w-1/3 px-2 flex flex-col">
       <div v-if="user.rol != 'soporte'">
         <h1 class="mt-2 font-medium text-lg ml-1">Canales De Atencion</h1>
         <div
@@ -38,10 +38,10 @@
       </div>
     </div>
 
-    <div class="" :class="user.rol != 'soporte' ? 'w-2/3' : 'w-11/12'">
+    <div class="" :class="user.rol != 'soporte' ? 'md:w-2/3' : 'md:w-11/12'">
       <h1 class="text-center font-medium text-lg">Reportar Algun Inconveniente</h1>
       <div>
-        <div class="flex px-4 items-center">
+        <div class="flex px-4 items-center mb-3 md:mb-0">
           <img
             class="w-12 h-12 rounded-full mr-1"
             src="https://img.freepik.com/vector-gratis/centro-llamadas_24877-49036.jpg?w=740&t=st=1698362881~exp=1698363481~hmac=0db56f31d94066272e05d45dfcc4b4d5e359e9f34414edbba27f30fe017363bb"
@@ -67,7 +67,7 @@
               </div>
 
               <div v-else class="w-full flex py-0.5">
-                <div class="bg-purple-800 text-white p-1.5 rounded-xl">
+                <div class="bg-purple-800 text-white p-1.5 rounded-e-xl rounded-t-xl">
                   <p>{{ message.message }}</p>
                   <p class="text-slate-400 text-xs">{{ message.time }}</p>
                 </div>

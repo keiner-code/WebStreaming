@@ -9,20 +9,26 @@
 
       <Transition :duration="550" name="nested">
         <div class="absolute top-12 left-0 outer border dark:border-none" v-if="show">
-          <div class="w-full dark:bg-gray-700">
+          <div class="w-full dark:bg-gray-700 bg-gray-300 h-screen">
             <div class="flex justify-end mr-2"><button @click="show = !show">X</button></div>
             <nav class="w-screen">
-              <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <RouterLink to="/home" class="text-lg font-medium">Inicio</RouterLink>
+              <li class="list-none my-2 pl-2 hover:bg-gray-400">
+                <RouterLink to="/" @click="show = !show" class="text-lg font-medium">Inicio</RouterLink>
               </li>
-              <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <RouterLink to="/streaming" class="text-lg font-medium">Streaming</RouterLink>
+              <li class="list-none my-2 pl-2 hover:bg-gray-400">
+                <RouterLink to="/streaming" @click="show = !show" class="hover:text-blue-500 text-lg font-medium">Streaming</RouterLink>
               </li>
-              <li class="list-none my-2 pl-2 hover:bg-gray-200">
-                <RouterLink to="" class="text-lg font-medium">Soporte</RouterLink>
+              <li class="list-none my-2 pl-2 hover:bg-gray-400">
+                <RouterLink v-if="profile" @click="show = !show" to="/accounts" class="hover:text-blue-500 text-lg font-medium">Cuentas</RouterLink>
               </li>
-              <li class="list-none my-2 mb-4 pl-2 hover:bg-gray-200">
-                <RouterLink to="" class="text-lg font-medium">About</RouterLink>
+              <li class="list-none my-2 pl-2 hover:bg-gray-400">
+                <RouterLink to="/support" @click="show = !show" class="hover:text-blue-500 text-lg font-medium">Soporte</RouterLink>
+              </li>
+              <li class="list-none my-2 pl-2 hover:bg-gray-400">
+                <RouterLink to="/about" @click="show = !show" class="hover:text-blue-500 text-lg font-medium">About</RouterLink>
+              </li>
+              <li v-if="profile?.rol == 'admin'" class="list-none my-2 pl-2 hover:bg-gray-400">
+                <RouterLink to="/dashboard" @click="show = !show" class="hover:text-blue-500 text-lg font-medium">Dashboard</RouterLink>
               </li>
             </nav>
           </div>
@@ -51,9 +57,7 @@
           <RouterLink to="/" class="hover:text-blue-500 text-lg font-medium">Inicio</RouterLink>
         </li>
         <li class="list-none">
-          <RouterLink to="/streaming" class="hover:text-blue-500 text-lg font-medium"
-            >Streaming</RouterLink
-          >
+          <RouterLink to="/streaming" class="hover:text-blue-500 text-lg font-medium">Streaming</RouterLink>
         </li>
         <li class="list-none">
           <RouterLink v-if="profile" to="/accounts" class="hover:text-blue-500 text-lg font-medium"
@@ -67,16 +71,14 @@
           <RouterLink to="/about" class="hover:text-blue-500 text-lg font-medium">About</RouterLink>
         </li>
         <li v-if="profile?.rol == 'admin'" class="list-none">
-          <RouterLink to="/dashboard" class="hover:text-blue-500 text-lg font-medium"
-            >Dashboard</RouterLink
-          >
+          <RouterLink to="/dashboard" class="hover:text-blue-500 text-lg font-medium">Dashboard</RouterLink>
         </li>
       </nav>
 
       <div class="flex items-center md:w-11/12">
-        <span class="h-8 rounded-md hidden md:block w-2/5 text-end"> </span>
+        <span class="h-8  rounded-md hidden md:block md:w-2/5 text-end"> </span>
 
-        <div class="flex items-center">
+        <div class="flex items-center ">
           <span
             class="hidden md:flex ml-4 items-center bg-black text-white px-1 rounded-md font-medium"
           >
@@ -84,7 +86,7 @@
             <p class="ml-1">2.5k</p>
           </span>
           <button @click="store.changeDark()">
-            <font-awesome-icon icon="moon" class="ml-4" />
+            <font-awesome-icon icon="moon" class="md:ml-4" />
           </button>
         </div>
 
@@ -103,14 +105,14 @@
           </RouterLink>
         </div>
 
-        <div v-else class="ml-6 flex flex-col items-center justify-center md:w-36">
+        <div v-else class="ml-2 md:ml-6 flex flex-col items-center justify-center w-28 md:w-36">
           <img
             class="w-10 rounded-full"
             src="https://img.freepik.com/psd-gratis/ilustracion-3d-avatar-o-perfil-humano_23-2150671142.jpg?w=826&t=st=1696642069~exp=1696642669~hmac=a135841facbd00bdb18a3a0801087cd666faf6886a790f1b7d9aab5449638091"
             alt="avatar"
           />
-          <div class="text-sm hidden md:block relative">
-            {{ profile?.name }} {{ profile?.lastName }}
+          <div class="text-xs md:text-sm  relative">
+            {{ profile?.name }}
             <button @click="showUser = !showUser"><font-awesome-icon icon="chevron-down" /></button>
             <div class="absolute top-5 -left-5" v-show="showUser">
               <div

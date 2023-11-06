@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex justify-center items-center h-screen">
-    <div class="w-1/4 bg-slate-100 shadow-2xl rounded-lg flex flex-col items-center p-1">
+    <div class="md:w-1/4 w-11/12 bg-slate-100 shadow-2xl rounded-lg flex flex-col items-center p-1">
       <h1 class="mt-4 mb-2 text-2xl font-medium">Registrarse</h1>
       <img
         class="w-1/4 rounded-full"

@@ -1,30 +1,24 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const isOpen = ref(false)
+const isOpen = ref(true)
 const activeClass = ref('bg-gray-600 bg-opacity-25 text-gray-100 border-gray-100')
 const inactiveClass = ref(
   'border-gray-900 text-gray-500 hover:bg-gray-600 hover:bg-opacity-25 hover:text-gray-100'
 )
 const handlerShow = () => {
-  isOpen.value = true
+  isOpen.value = !isOpen.value
 }
 </script>
 
 <template>
-  <div class="flex h-screen">
-    <!-- Backdrop -->
+  <div class="flex h-screen" v-show="isOpen">
+    
     <div
-      :class="isOpen ? 'block' : 'hidden'"
-      class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"
-      @click="handlerShow"
-    />
-    <!-- End Backdrop -->
-
-    <div
-      :class="isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
-      class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0"
+    :class="isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
+    class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0"
     >
+    <button class="text-white text-end w-full pr-2" @click="handlerShow">X</button>
       <div class="flex items-center justify-center mt-8">
         <div class="flex items-center">
           <svg
@@ -187,5 +181,8 @@ const handlerShow = () => {
         </RouterLink>
       </nav>
     </div>
+  </div>
+  <div class="fixed left-2">
+    <button @click="handlerShow" class=" text-xl text-gray-700"><font-awesome-icon icon="bars" /></button>
   </div>
 </template>

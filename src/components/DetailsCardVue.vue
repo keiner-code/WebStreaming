@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-3/4 md:w-1/2 bg-slate-200 flex flex-col md:flex-row bg-opacity-40 rounded-lg shadow-lg p-2"
+    class="w-3/4 md:w-1/2 bg-slate-400 flex flex-col md:flex-row bg-opacity-80 rounded-lg shadow-lg p-2"
   >
     <img class="w-full md:w-3/6 p-1 rounded-xl" :src="store.detailsAccount.image" alt="" />
     <div class="pl-2 pt-4 relative">

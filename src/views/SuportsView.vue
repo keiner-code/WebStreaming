@@ -1,11 +1,11 @@
 <template>
-  <div class="h-16"></div>
-  <div class="flex" :class="store.dark">
-    <div class="w-2/5 dark:bg-gray-700 dark:text-white">
+  <div class="h-12 md:h-16"></div>
+  <div class="flex md:flex-row flex-col" :class="store.dark">
+    <div class="md:w-2/5 dark:bg-gray-700 dark:text-white">
     <SupportInfoVue />
     </div>
 
-    <div class="w-3/5 px-4 dark:bg-gray-700 dark:text-white">
+    <div class="md:w-3/5 px-4 dark:bg-gray-700 dark:text-white">
       <ChatVue />
     </div>
   </div>

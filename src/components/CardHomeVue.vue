@@ -45,19 +45,19 @@
     <DetailsCardVue />
   </div>
 
-  <div v-show="showConfirm" class="fixed top-1/2 left-1/3 text-center md:w-1/2">
-    <div class="bg-gray-400 shadow-2xl rounded-lg py-2 w-2/3 text-white">
+  <div v-show="showConfirm" class="fixed top-1/3 md:top-1/2 w-full -left-0 md:left-1/3 text-center md:w-1/2">
+    <div class="bg-gray-400 shadow-2xl rounded-lg py-2 md:w-2/3 text-white">
       <p class="text-lg font-medium">¿Esta seguro(a) que desea comprar esta cuenta?</p>
       <p>Si es asi por favor ingrese el nombre de quien usara la cuenta</p>
       <div class="w-full flex pl-2 pt-2">
         <input
           type="text"
           v-model="cliente"
-          class="bg-transparent border placeholder-white w-1/2 rounded-md outline-none"
+          class="bg-transparent border placeholder-white w-11/12 md:w-1/2 rounded-md outline-none"
           placeholder="Nombre del cliente"
         />
       </div>
-      <div class="flex md:block md:text-end md:mr-4 md:mt-4">
+      <div class="flex md:block md:text-end md:mr-4 mt-4">
         <button @click="showConfirm = !showConfirm" class="bg-red-400 ml-2 md:ml-6 p-1 rounded-lg">
           Cancelar
         </button>
@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <div v-show="state.showInfo" class="fixed z-10 top-1/4 w-2/6 left-1/3 border bg-green-400 p-2 bg-opacity-90 rounded-lg shadow-lg">
+  <div v-show="state.showInfo" class="fixed z-10 top-1/4 md:w-2/6 -left-0 md:left-1/3 border bg-green-400 p-2 bg-opacity-90 rounded-lg shadow-lg">
     <AlertInfo />
   </div>
 </template>

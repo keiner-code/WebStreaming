@@ -125,13 +125,14 @@ const handlerEdit = async () => {
 </script>
 
 <template>
-  <div class="w-full flex justify-between px-4 gap-4">
-    <div class="flex items-center flex-col gap-4 w-1/2">
+  <div class="w-full flex-col flex md:flex-row justify-between px-4 gap-4">
+
+    <div class="flex items-center flex-col gap-4 md:w-1/2">
       <h1 class="text-3xl font-medium">Crear El Producto</h1>
 
-      <div class="pl-2 w-full flex">
+      <div class="md:pl-2 w-full flex md:flex-row flex-col">
         <h1 class="pt-1 text-xl font-medium">Eliminar Cuenta</h1>
-        <div class="mt-1 flex pl-2 w-2/3">
+        <div class="mt-1 flex pl-2 md:w-2/3">
           <input
             v-model="id"
             class="border rounded-lg mr-2 w-2/3 h-8 outline-none"
@@ -224,10 +225,10 @@ const handlerEdit = async () => {
       </form>
     </div>
 
-    <div class="flex items-center flex-col gap-4 w-1/2">
+    <div class="flex items-center flex-col gap-4 md:w-1/2">
       <h1 class="text-3xl font-medium">Editar La Cuenta</h1>
 
-      <div class="border w-1/2 rounded-lg ml-4">
+      <div class="border md:w-1/2 rounded-lg md:ml-4 w-full">
         <input
           v-model="idEdit"
           class="h-8 w-11/12 outline-none"

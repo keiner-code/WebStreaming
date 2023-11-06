@@ -5,15 +5,15 @@
       Cuentas Vendidas
     </h1>
     <div class="py-2 flex flex-col items-center w-full dark:bg-gray-700 dark:text-white">
-      <div class="w-full pl-3 dark:bg-gray-700 dark:text-white flex">
-        <div class="border w-1/4 rounded-lg pr-2 dark:bg-gray-700 dark:text-white">
+      <div class="w-full pl-3 dark:bg-gray-700 dark:text-white flex md:flex-row flex-col">
+        <div class="border md:w-1/4 rounded-lg pr-2 dark:bg-gray-700 dark:text-white">
           <input class="h-8 w-11/12 outline-none bg-transparent" type="text" placeholder="Search" />
           <button class="">
             <font-awesome-icon class="text-gray-500" icon="magnifying-glass" />
           </button>
         </div>
 
-        <div class="w-full flex justify-end pr-10 gap-1">
+        <div class="w-full flex justify-end pr-10 gap-1 mt-4 md:mt-0">
           <div v-for="value in accounts.btnPagination" :key="value">
             <button
               class="border p-1 rounded-md border-gray-400 text-gray-700"
@@ -32,7 +32,7 @@
       </div>
 
       <div
-        class="flex w-full justify-center mt-4 p-4 dark:bg-gray-700 dark:text-white h-[40rem] overflow-x-hidden overflow-scroll"
+        class="flex w-full justify-center mt-4 p-4 dark:bg-gray-700 dark:text-white h-[40rem]  overflow-auto"
       >
         <table class="table-column-group w-full">
           <thead class="w-full">
